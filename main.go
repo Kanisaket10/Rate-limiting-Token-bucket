@@ -26,7 +26,9 @@ func endpointHandler(writer http.ResponseWriter, request *http.Request) {
 }
 
 func  main()  {
-	http.Handle("/ping", rateLimter(endpointHandler))
+	http.Handle("/ping", rateLimiter(endpointHandler))
+	
+	log.Println("Server running on :8080")
 	err := http.ListenAndServe(":8080", nil)
 	if err != nil {
 		log.Println("Server failed to start ", err)
